@@ -99,6 +99,7 @@ th{
     color:white;
 }
 
+/* ===== הדפסה נקייה ===== */
 @media print{
     body *{visibility:hidden;}
     .print-area, .print-area *{visibility:visible;}
@@ -107,7 +108,13 @@ th{
         top:0;
         left:0;
         width:100%;
+        padding:20px;
     }
+}
+
+/* ביטול header/footer של דפדפן (ככל שניתן) */
+@page{
+    margin:0;
 }
 </style>
 </head>
@@ -168,10 +175,10 @@ return Math.round(n).toLocaleString('he-IL')+" ₪";
 
 function calculate(){
 
-let x=parseFloat(document.getElementById("amount").value);
-let c1=parseFloat(document.getElementById("commission").value);
-let c2=parseFloat(document.getElementById("withdraw").value);
-let c3=parseFloat(document.getElementById("broker").value);
+let x=parseFloat(amount.value);
+let c1=parseFloat(commission.value);
+let c2=parseFloat(withdraw.value);
+let c3=parseFloat(broker.value);
 
 if(isNaN(x)||isNaN(c1)||isNaN(c2)||isNaN(c3)){
 alert("יש למלא את כל השדות");
@@ -187,23 +194,22 @@ let honor=x-client-brokerA;
 
 data={x,before,c1,c2,c3,commissionA,withdrawA,brokerA,client,honor};
 
-/* הצגת טבלה */
-document.getElementById("t_amount").innerText=f(x);
-document.getElementById("t_before").innerText=f(before);
-document.getElementById("t_commission").innerText=f(commissionA);
-document.getElementById("t_withdraw").innerText=f(withdrawA);
-document.getElementById("t_broker").innerText=f(brokerA);
-document.getElementById("t_client").innerText=f(client);
-document.getElementById("t_honor").innerText=f(honor);
+t_amount.innerText=f(x);
+t_before.innerText=f(before);
+t_commission.innerText=f(commissionA);
+t_withdraw.innerText=f(withdrawA);
+t_broker.innerText=f(brokerA);
+t_client.innerText=f(client);
+t_honor.innerText=f(honor);
 
-document.getElementById("p_commission").innerText=c1+"%";
-document.getElementById("p_withdraw").innerText=c2+"%";
-document.getElementById("p_broker").innerText=c3+"%";
+p_commission.innerText=c1+"%";
+p_withdraw.innerText=c2+"%";
+p_broker.innerText=c3+"%";
 
-document.getElementById("mainTable").style.display="table";
+mainTable.style.display="table";
 }
 
-/* ===== הדפסות ===== */
+/* ===== הדפסה ===== */
 
 function printClient(){
 if(!data.x)return alert("חשב קודם");
