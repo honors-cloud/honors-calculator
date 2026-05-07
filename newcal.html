@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>מחשבון המכובדים</title>
+
+<style>
+body{
+    font-family: Arial;
+    direction: rtl;
+    background:#f4f6f8;
+    padding:20px;
+}
+
+.container{
+    max-width:650px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h2{text-align:center;}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-bottom:10px;
+    font-size:18px;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:8px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.calc{background:#2d89ef;color:white;}
+.client{background:#28a745;color:white;}
+.broker{background:#ff9800;color:white;}
+.honor{background:#6f42c1;color:white;}
+
+table{
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+}
+
+td, th{
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+th{
+    background:#2d89ef;
+    color:white;
+}
+
+@media print{
+    body *{visibility:hidden;}
+    .print-area, .print-area *{visibility:visible;}
+    .print-area{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>💰 מחשבון המכובדים</h2>
+
+<input type="number" id="amount" placeholder="סכום">
+<input type="number" id="transfer" placeholder="אחוז העברה">
+<input type="number" id="withdraw" placeholder="אחוז משיכה">
+<input type="number" id="broker" placeholder="אחוז תיווך">
+
+<button class="calc" onclick="calculate()">חשב</button>
+
+<button class="client" onclick="printClient()">🧾 הדפס ללקוח</button>
+<button class="broker" onclick="printBroker()">🤝 הדפס למתווך</button>
+<button class="honor" onclick="printHonor()">🏦 הדפס למכובדים</button>
+
+<table id="mainTable" style="display:none;">
+<tr><th>פרמטר</th><th>סכום</th><th>אחוז</th></tr>
+
+<tr><td>סכום כולל</td><td id="t_amount"></td><td>-</td></tr>
+<tr><td>סכום לפני מע״מ</td><td id="t_before"></td><td>-</td></tr>
+
+<tr>
+<td>סכום משיכה</td>
+<td id="t_withdraw"></td>
+<td id="p_withdraw"></td>
+</tr>
+
+<tr>
+<td>סכום עמלה</td>
+<td id="t_commission"></td>
+<td id="p_transfer"></td>
+</tr>
+
+<tr>
+<td>סכום מתווך</td>
+<td id="t_broker"></td>
+<td id="p_broker"></td>
+</tr>
+
+<tr><td>לקוח מקבל</td><td id="t_client"></td><td>-</td></tr>
+<tr><td>נשאר למכובדים</td><td id="t_honor"></td><td>-</td></tr>
+
+</table>
+
+<div id="printArea" class="print-area"></div>
+
+</div>
+
+<script>
+
+let data={};
+
+function f(n){
+    return n.toLocaleString('he-IL',{minimumFractionDigits:2})+" ₪";
+}
+
+function calculate(){
+
+let x=parseFloat(amount.value)||0;
+let c1=parseFloat(transfer.value)||0;
+let c3=parseFloat(withdraw.value)||0;
+let c2=parseFloat(broker.value)||0;
+
+let before=x/1.18;
+let withdrawA=x*c3/100;
+let commissionPercent=c1-c3;
+let commission=(x/1.18)*(commissionPercent)/100;
+let brokerA=(x/1.18)*c2/100;
+let client=x-commission-withdrawA;
+let honor=x-client-brokerA;
+
+data={x,before,c1,c2,c3,withdrawA,commission,brokerA,client,honor,commissionPercent};
+
+t_amount.innerText=f(x);
+t_before.innerText=f(before);
+t_withdraw.innerText=f(withdrawA);
+t_commission.innerText=f(commission);
+t_broker.innerText=f(brokerA);
+t_client.innerText=f(client);
+t_honor.innerText=f(honor);
+
+p_withdraw.innerText=c3+"%";
+p_transfer.innerText=commissionPercent+"%";
+p_broker.innerText=c2+"%";
+
+mainTable.style.display="table";
+}
+
+function printClient(){
+if(!data.x)return alert("חשב קודם");
+
+printArea.innerHTML=`
+
+<h2 style="text-align:center;">🧾 דוח ללקוח</h2>
+
+<div style="background:#eef6ff;padding:15px;border-radius:10px;margin-top:10px;line-height:1.8;">
+אחוז המשיכה מחושב מהסכום כולל מע״מ ואחוז העמלה מהסכום לפני מע״מ<br><br>
+האחוז הכולל: <b style="color:#2d89ef;">${data.c1}%</b><br>
+אחוז המשיכה: <b style="color:#e53935;">${data.c3}%</b><br>
+אחוז עמלה: <b style="color:#8e24aa;">${data.commissionPercent}%</b>
+</div>
+
+<table style="width:100%;margin-top:20px;border-collapse:collapse;">
+<tr style="background:#2d89ef;color:white;">
+<th>פרמטר</th><th>סכום</th><th>אחוז</th>
+</tr>
+
+<tr><td>סכום כולל</td><td>${f(data.x)}</td><td>-</td></tr>
+<tr><td>לפני מע״מ</td><td>${f(data.before)}</td><td>-</td></tr>
+
+<tr>
+<td>משיכה</td>
+<td style="color:#e53935;">${f(data.withdrawA)}</td>
+<td>${data.c3}%</td>
+</tr>
+
+<tr>
+<td>עמלה</td>
+<td style="color:#2d89ef;">${f(data.commission)}</td>
+<td>${data.commissionPercent}%</td>
+</tr>
+
+<tr style="font-weight:bold;background:#f1f8ff;">
+<td>לקוח מקבל</td>
+<td style="color:green;">${f(data.client)}</td>
+<td>-</td>
+</tr>
+
+</table>
+`;
+
+window.print();
+}
+
+function printBroker(){
+if(!data.x)return alert("חשב קודם");
+
+printArea.innerHTML=`
+
+<h2 style="text-align:center;">🤝 דוח למתווך</h2>
+
+<div style="background:#fff3e0;padding:15px;border-radius:10px;margin-top:10px;">
+האחוז מחושב מהסכום לפני מע״מ
+</div>
+
+<table style="width:100%;margin-top:20px;border-collapse:collapse;">
+
+<tr style="background:#ff9800;color:white;">
+<th>פרמטר</th>
+<th>סכום</th>
+<th>אחוז</th>
+</tr>
+
+<tr>
+<td>💰 סכום כולל</td>
+<td>${f(data.x)}</td>
+<td>-</td>
+</tr>
+
+<tr>
+<td>🧾 לפני מע״מ</td>
+<td>${f(data.before)}</td>
+<td>-</td>
+</tr>
+
+<tr style="font-weight:bold;background:#fff3e0;">
+<td>🤝 תיווך</td>
+<td style="color:#ff9800;">
+${f(data.brokerA)}
+</td>
+<td style="color:#ff9800;font-weight:bold;">
+${data.c2}%
+</td>
+</tr>
+
+</table>
+`;
+
+window.print();
+}
+
+function printHonor(){
+if(!data.x)return alert("חשב קודם");
+
+printArea.innerHTML=`
+
+<h2 style="text-align:center;">🏦 דוח למכובדים</h2>
+
+<table style="width:100%;margin-top:20px;border-collapse:collapse;">
+
+<tr style="background:#6f42c1;color:white;">
+<th>פרמטר</th>
+<th>סכום</th>
+<th>אחוז</th>
+</tr>
+
+<tr><td>💰 סכום כולל</td><td>${f(data.x)}</td><td>-</td></tr>
+<tr><td>🧾 לפני מע״מ</td><td>${f(data.before)}</td><td>-</td></tr>
+
+<tr>
+<td>🏧 משיכה</td>
+<td style="color:#e53935;">${f(data.withdrawA)}</td>
+<td>${data.c3}%</td>
+</tr>
+
+<tr>
+<td>📤 עמלה</td>
+<td style="color:#2d89ef;">${f(data.commission)}</td>
+<td>${data.commissionPercent}%</td>
+</tr>
+
+<tr>
+<td>🤝 תיווך</td>
+<td style="color:#ff9800;">${f(data.brokerA)}</td>
+<td>${data.c2}%</td>
+</tr>
+
+<tr>
+<td>✅ ללקוח</td>
+<td style="color:green;">${f(data.client)}</td>
+<td>-</td>
+</tr>
+
+<tr style="font-weight:bold;background:#f3e5f5;">
+<td>🏦 נשאר למכובדים</td>
+<td style="color:#6f42c1;">${f(data.honor)}</td>
+<td>-</td>
+</tr>
+
+</table>
+`;
+
+window.print();
+}
+
+</script>
+
+</body>
+</html>
