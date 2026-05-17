@@ -9,6 +9,11 @@
 
 <style>
 
+@page{
+    margin:0;
+    size:auto;
+}
+
 *{
     box-sizing:border-box;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -136,16 +141,16 @@ input:focus{
     background:linear-gradient(135deg,#ffffff 0%, #f8fafc 100%);
     color:#0f172a;
     border-radius:24px;
-    padding:24px;
+    padding:20px;
     text-align:center;
-    margin-bottom:22px;
+    margin-bottom:16px;
     border:1px solid #e2e8f0;
 }
 
 .middle{
     display:flex;
-    gap:16px;
-    margin-bottom:20px;
+    gap:12px;
+    margin-bottom:14px;
 }
 
 .middle > div{
@@ -160,31 +165,31 @@ input:focus{
 }
 
 .rm-table-card td{
-    font-size:16px;
+    font-size:15px;
     font-weight:600;
-    padding:16px 10px;
+    padding:12px 8px;
 }
 
 .rm-table-card td:last-child{
-    font-size:18px;
+    font-size:17px;
     font-weight:700;
 }
 
 .lm-table-card td{
-    font-size:16px;
+    font-size:15px;
     font-weight:600;
-    padding:16px 10px;
+    padding:12px 8px;
 }
 
 .lm-table-card td:last-child{
-    font-size:18px;
+    font-size:17px;
     font-weight:700;
 }
 
 .table-title{
     background:#f8fafc;
     color:#334155;
-    padding:14px;
+    padding:12px;
     text-align:center;
     font-weight:700;
     font-size:15px;
@@ -198,7 +203,7 @@ table{
 
 th,
 td{
-    padding:14px 10px;
+    padding:12px 8px;
     border-bottom:1px solid #eef2f7;
     text-align:center;
     font-size:14px;
@@ -211,7 +216,7 @@ th{
 .summary-wrapper{
     display:flex;
     justify-content:center;
-    padding:22px;
+    padding:12px;
     background:#f8fafc;
 }
 
@@ -240,7 +245,7 @@ th{
 }
 
 .total-row td{
-    padding:16px 10px;
+    padding:14px 8px;
     font-size:16px;
     font-weight:800;
     color:#1d4ed8;
@@ -248,14 +253,14 @@ th{
 }
 
 .notice{
-    margin-top:20px;
+    margin-top:14px;
     background:#fff;
     border:1px solid #e2e8f0;
     color:#475569;
-    padding:18px;
+    padding:14px;
     border-radius:18px;
-    line-height:1.9;
-    font-size:14px;
+    line-height:1.7;
+    font-size:13px;
 }
 
 @media(max-width:700px){
@@ -268,14 +273,47 @@ th{
 
 @media print{
 
+    html,
     body{
-        background:white;
+        margin:0 !important;
+        padding:0 !important;
+        width:100%;
+        height:auto;
+        overflow:hidden;
+    }
+
+    body{
+        background:white !important;
+        zoom:0.87;
+    }
+
+    .container{
+        max-width:100%;
+        margin:0;
         padding:0;
+    }
+
+    .card{
+        box-shadow:none !important;
+        border:none !important;
+        margin:0 !important;
+        padding:0 !important;
+        break-inside:avoid;
+        page-break-inside:avoid;
     }
 
     .form-page,
     .print-btn{
         display:none !important;
+    }
+
+    .middle{
+        gap:8px;
+        margin-bottom:10px;
+    }
+
+    table{
+        page-break-inside:avoid;
     }
 
 }
@@ -287,229 +325,217 @@ th{
 
 <div class="container">
 
-    <!-- FORM -->
+<div class="card form-page">
 
-    <div class="card form-page">
+<div class="title">
+✨מחשבון המכובדים✨
+</div>
 
-        <div class="title">
-           ✨ מחשבון המכובדים ✨
-        </div>
+<div class="subtitle">
+הזן את הפרטים להפקת דוח מסודר ללקוח
+</div>
 
-        <div class="subtitle">
-            הזן את הפרטים להפקת דוח מסודר ללקוח
-        </div>
+<div class="input-group">
+<label>פרטי הלקוח</label>
+<input type="text" id="i_1">
+</div>
 
-        <div class="input-group">
-            <label>פרטי הלקוח</label>
-            <input type="text" id="i_1">
-        </div>
+<div class="input-group">
+<label>סכום העברה</label>
+<input type="number" id="x_1">
+</div>
 
-        <div class="input-group">
-            <label>סכום העברה</label>
-            <input type="number" id="x_1">
-        </div>
+<div class="input-group">
+<label>אחוז משיכה</label>
+<input type="number" id="i_3">
+</div>
 
-        <div class="input-group">
-            <label>אחוז משיכה</label>
-            <input type="number" id="i_3">
-        </div>
+<div class="input-group">
+<label>אחוז עמלה</label>
+<input type="number" id="i_4">
+</div>
 
-        <div class="input-group">
-            <label>אחוז עמלה</label>
-            <input type="number" id="i_4">
-        </div>
+<div class="input-group">
+<label>אחוז תיווך</label>
+<input type="number" id="i_5">
+</div>
 
-        <div class="input-group">
-            <label>אחוז תיווך</label>
-            <input type="number" id="i_5">
-        </div>
+<div class="input-group">
 
-        <div class="input-group">
+<label>יתרה ללקוח</label>
 
-            <label>יתרה ללקוח</label>
+<div class="balance-row">
 
-            <div class="balance-row">
+<input type="number" id="i_6">
 
-                <input type="number" id="i_6">
+<button type="button"
+class="status-btn green-btn"
+onclick="setBalanceType('green')">
+🟢
+</button>
 
-                <button type="button"
-                        class="status-btn green-btn"
-                        onclick="setBalanceType('green')">
-                    🟢
-                </button>
+<button type="button"
+class="status-btn red-btn"
+onclick="setBalanceType('red')">
+🔴
+</button>
 
-                <button type="button"
-                        class="status-btn red-btn"
-                        onclick="setBalanceType('red')">
-                    🔴
-                </button>
+</div>
 
-            </div>
+</div>
 
-        </div>
+<button class="main-btn"
+onclick="generateReport()">
 
-        <button class="main-btn"
-                onclick="generateReport()">
+צור דוח לקוח →
 
-            צור דוח לקוח →
+</button>
 
-        </button>
+</div>
 
-    </div>
 
+<div class="card hidden"
+id="reportPage">
 
-    <!-- REPORT -->
+<div class="top-box">
 
-    <div class="card hidden"
-         id="reportPage">
+<h2 id="clientInfo"></h2>
 
-        <div class="top-box">
+</div>
 
-            <h2 id="clientInfo"></h2>
 
-        </div>
+<div class="middle">
 
+<div class="table-card lm-table-card">
 
-        <!-- MIDDLE -->
+<div class="table-title">
+נתוני העברה 💸
+</div>
 
-        <div class="middle">
+<table>
 
-            <!-- LEFT -->
+<tr>
+<td>סכום ההעברה</td>
+<td id="transferAmount"></td>
+</tr>
 
-            <div class="table-card lm-table-card">
+<tr>
+<td>סכום לפני מע״מ</td>
+<td id="beforeVat"></td>
+</tr>
 
-                <div class="table-title">
-                    נתוני העברה 💸
-                </div>
+</table>
 
-                <table>
+</div>
 
-                    <tr>
-                        <td>סכום ההעברה</td>
-                        <td id="transferAmount"></td>
-                    </tr>
 
-                    <tr>
-                        <td>סכום לפני מע״מ</td>
-                        <td id="beforeVat"></td>
-                    </tr>
+<div class="table-card rm-table-card">
 
-                </table>
+<div class="table-title">
+עמלות וחישובים 📊
+</div>
 
-            </div>
+<table>
 
+<tr>
+<th style="width:65%">
+סוג עמלה
+</th>
 
-            <!-- RIGHT -->
+<th style="width:35%">
+סכום
+</th>
+</tr>
 
-            <div class="table-card rm-table-card">
+<tr>
+<td id="withdrawType"></td>
+<td id="withdrawAmount"></td>
+</tr>
 
-                <div class="table-title">
-                    עמלות וחישובים 📊
-                </div>
+<tr>
+<td id="costType"></td>
+<td id="costAmount"></td>
+</tr>
 
-                <table>
+<tr>
+<td id="brokerType"></td>
+<td id="brokerAmount"></td>
+</tr>
 
-                    <tr>
-                        <th style="width:65%">
-                            סוג עמלה
-                        </th>
+</table>
 
-                        <th style="width:35%">
-                            סכום
-                        </th>
-                    </tr>
+</div>
 
-                    <tr>
-                        <td id="withdrawType"></td>
-                        <td id="withdrawAmount"></td>
-                    </tr>
+</div>
 
-                    <tr>
-                        <td id="costType"></td>
-                        <td id="costAmount"></td>
-                    </tr>
 
-                    <tr>
-                        <td id="brokerType"></td>
-                        <td id="brokerAmount"></td>
-                    </tr>
+<div class="table-card">
 
-                </table>
+<div class="table-title">
+סיכום ללקוח 📦
+</div>
 
-            </div>
+<div class="summary-wrapper">
 
-        </div>
+<table class="summary-table">
 
+<tr>
+<th>פירוט</th>
+<th>סכום</th>
+</tr>
 
-        <!-- SUMMARY -->
+<tr>
+<td>סכום ללקוח</td>
+<td id="clientTotal"></td>
+</tr>
 
-        <div class="table-card">
+<tr>
+<td>סכום למתווך</td>
+<td id="brokerTotal"></td>
+</tr>
 
-            <div class="table-title">
-                סיכום ללקוח 📦
-            </div>
+<tr class="total-row">
 
-            <div class="summary-wrapper">
+<td style="font-size:15px;">
+סכום כולל למסירה ✨
+</td>
 
-                <table class="summary-table">
+<td id="deliveryTotal"></td>
 
-                    <tr>
-                        <th>פירוט</th>
-                        <th>סכום</th>
-                    </tr>
+</tr>
 
-                    <tr>
-                        <td>סכום ללקוח</td>
-                        <td id="clientTotal"></td>
-                    </tr>
+<tr id="balanceRow"
+class="hidden">
 
-                    <tr>
-                        <td>סכום למתווך</td>
-                        <td id="brokerTotal"></td>
-                    </tr>
+<td id="balanceLabel"></td>
 
-                    <tr class="total-row">
-                        <td style="font-size:15px;">
-                           ✨ סכום כולל למסירה 
-                        </td>
+<td id="balanceValue"></td>
 
-                        <td id="deliveryTotal"></td>
-                    </tr>
+</tr>
 
-                    <tr id="balanceRow"
-                        class="hidden">
+</table>
 
-                        <td id="balanceLabel"></td>
+</div>
 
-                        <td id="balanceValue"></td>
+</div>
 
-                    </tr>
 
-                </table>
+<div class="notice">
 
-            </div>
+אחוז המשיכה מחושב לפי הסכום כולל מע״מ
+ואחוז העלות והתיווך מחושב לפי הסכום לפני מע״מ
 
-        </div>
+</div>
 
 
-        <!-- NOTICE -->
+<button class="print-btn"
+onclick="window.print()">
 
-        <div class="notice">
+הדפס דוח 🖨️
 
-            אחוז המשיכה מחושב לפי הסכום כולל מע״מ
-            ואחוז העלות והתיווך מחושב לפי הסכום לפני מע״מ
+</button>
 
-        </div>
-
-
-        <button class="print-btn"
-                onclick="window.print()">
-
-            הדפס דוח 🖨️
-
-        </button>
-
-    </div>
+</div>
 
 </div>
 
@@ -518,9 +544,9 @@ th{
 
 function formatNumber(num){
 
-    return Number(num).toLocaleString('he-IL', {
-        maximumFractionDigits:0
-    });
+return Number(num).toLocaleString('he-IL', {
+maximumFractionDigits:0
+});
 
 }
 
@@ -528,159 +554,159 @@ let balanceType = '';
 
 function setBalanceType(type){
 
-    balanceType = type;
+balanceType = type;
 
-    document.querySelectorAll('.status-btn')
-        .forEach(btn => {
-            btn.classList.remove('selected-status');
-        });
+document.querySelectorAll('.status-btn')
+.forEach(btn => {
+btn.classList.remove('selected-status');
+});
 
-    if(type === 'green'){
-        document.querySelector('.green-btn')
-            .classList.add('selected-status');
-    }
+if(type === 'green'){
+document.querySelector('.green-btn')
+.classList.add('selected-status');
+}
 
-    if(type === 'red'){
-        document.querySelector('.red-btn')
-            .classList.add('selected-status');
-    }
+if(type === 'red'){
+document.querySelector('.red-btn')
+.classList.add('selected-status');
+}
 
 }
 
 function generateReport(){
 
-    const i_1 =
-        document.getElementById('i_1').value;
+const i_1 =
+document.getElementById('i_1').value;
 
-    const x_1 =
-        parseFloat(document.getElementById('x_1').value) || 0;
+const x_1 =
+parseFloat(document.getElementById('x_1').value) || 0;
 
-    const i_3 =
-        parseFloat(document.getElementById('i_3').value) || 0;
+const i_3 =
+parseFloat(document.getElementById('i_3').value) || 0;
 
-    const i_4 =
-        parseFloat(document.getElementById('i_4').value) || 0;
+const i_4 =
+parseFloat(document.getElementById('i_4').value) || 0;
 
-    const i_5 =
-        parseFloat(document.getElementById('i_5').value) || 0;
+const i_5 =
+parseFloat(document.getElementById('i_5').value) || 0;
 
-    const i_6 =
-        parseFloat(document.getElementById('i_6').value) || 0;
-
-
-    const x_2 = x_1 / 1.18;
-
-    const x_3 = x_1 * (i_3 / 100);
-
-    const x_4 = x_2 * (i_4 / 100);
-
-    const x_5 = x_2 * (i_5 / 100);
-
-    const s_1 = x_1 - x_3 - x_4;
-
-    const totalDelivery = s_1 + x_5;
+const i_6 =
+parseFloat(document.getElementById('i_6').value) || 0;
 
 
-    document.getElementById('clientInfo').innerHTML =
-        'דוח מפורט ללקוח - ' + i_1;
+const x_2 = x_1 / 1.18;
+
+const x_3 = x_1 * (i_3 / 100);
+
+const x_4 = x_2 * (i_4 / 100);
+
+const x_5 = x_2 * (i_5 / 100);
+
+const s_1 = x_1 - x_3 - x_4;
+
+const totalDelivery = s_1 + x_5;
 
 
-    document.getElementById('transferAmount').innerHTML =
-        formatNumber(x_1);
-
-    document.getElementById('beforeVat').innerHTML =
-        formatNumber(x_2);
+document.getElementById('clientInfo').innerHTML =
+'מידע ללקוח - ' + i_1;
 
 
-    document.getElementById('withdrawType').innerHTML =
-        'משיכה (' + i_3 + '%)';
+document.getElementById('transferAmount').innerHTML =
+formatNumber(x_1);
 
-    document.getElementById('withdrawAmount').innerHTML =
-        formatNumber(x_3);
-
-    document.getElementById('costType').innerHTML =
-        'עלות (' + i_4 + '%)';
-
-    document.getElementById('costAmount').innerHTML =
-        formatNumber(x_4);
-
-    document.getElementById('brokerType').innerHTML =
-        'תיווך (' + i_5 + '%)';
-
-    document.getElementById('brokerAmount').innerHTML =
-        formatNumber(x_5);
+document.getElementById('beforeVat').innerHTML =
+formatNumber(x_2);
 
 
-    document.getElementById('clientTotal').innerHTML =
-        formatNumber(s_1);
+document.getElementById('withdrawType').innerHTML =
+'משיכה (' + i_3 + '%)';
 
-    document.getElementById('brokerTotal').innerHTML =
-        formatNumber(x_5);
+document.getElementById('withdrawAmount').innerHTML =
+formatNumber(x_3);
 
-    document.getElementById('deliveryTotal').innerHTML =
-        formatNumber(totalDelivery);
+document.getElementById('costType').innerHTML =
+'עלות (' + i_4 + '%)';
 
+document.getElementById('costAmount').innerHTML =
+formatNumber(x_4);
 
-    const balanceRow =
-        document.getElementById('balanceRow');
+document.getElementById('brokerType').innerHTML =
+'תיווך (' + i_5 + '%)';
 
-    const balanceLabel =
-        document.getElementById('balanceLabel');
-
-    const balanceValue =
-        document.getElementById('balanceValue');
-
-
-    if(i_6 > 0){
-
-        balanceRow.classList.remove('hidden');
-
-        if(balanceType === 'green'){
-
-            balanceLabel.innerHTML =
-                '🟢 יתרה ללקוח ';
-
-            balanceRow.style.background =
-                '#ecfdf5';
-
-            balanceRow.style.color =
-                '#166534';
-
-        }
-
-        else if(balanceType === 'red'){
-
-            balanceLabel.innerHTML =
-                '🔴 חוב על הלקוח ';
-
-            balanceRow.style.background =
-                '#fef2f2';
-
-            balanceRow.style.color =
-                '#991b1b';
-
-        }
-
-        balanceValue.innerHTML =
-            formatNumber(i_6);
-
-    }
-
-    else{
-
-        balanceRow.classList.add('hidden');
-
-    }
+document.getElementById('brokerAmount').innerHTML =
+formatNumber(x_5);
 
 
-    document.getElementById('reportPage')
-        .classList.remove('hidden');
+document.getElementById('clientTotal').innerHTML =
+formatNumber(s_1);
+
+document.getElementById('brokerTotal').innerHTML =
+formatNumber(x_5);
+
+document.getElementById('deliveryTotal').innerHTML =
+formatNumber(totalDelivery);
 
 
-    window.scrollTo({
-        top:document.body.scrollHeight,
-        behavior:'smooth'
-    });
+const balanceRow =
+document.getElementById('balanceRow');
+
+const balanceLabel =
+document.getElementById('balanceLabel');
+
+const balanceValue =
+document.getElementById('balanceValue');
+
+
+if(i_6 > 0){
+
+balanceRow.classList.remove('hidden');
+
+if(balanceType === 'green'){
+
+balanceLabel.innerHTML =
+'יתרה ללקוח 🟢';
+
+balanceRow.style.background =
+'#ecfdf5';
+
+balanceRow.style.color =
+'#166534';
+
+}
+
+else if(balanceType === 'red'){
+
+balanceLabel.innerHTML =
+'חוב על הלקוח 🔴';
+
+balanceRow.style.background =
+'#fef2f2';
+
+balanceRow.style.color =
+'#991b1b';
+
+}
+
+balanceValue.innerHTML =
+formatNumber(i_6);
+
+}
+
+else{
+
+balanceRow.classList.add('hidden');
+
+}
+
+
+document.getElementById('reportPage')
+.classList.remove('hidden');
+
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:'smooth'
+});
 
 }
 
