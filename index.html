@@ -5,7 +5,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>טופס לקוח</title>
+<title>דוח מפורט ללקוח</title>
 
 <style>
 
@@ -56,6 +56,42 @@ body{
     margin-bottom:16px;
 }
 
+.balance-row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+
+.balance-row input{
+    flex:1;
+}
+
+.status-btn{
+    width:52px;
+    min-width:52px;
+    height:52px;
+    border:none;
+    border-radius:14px;
+    font-size:24px;
+    cursor:pointer;
+    transition:0.2s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.green-btn{
+    background:#dcfce7;
+}
+
+.red-btn{
+    background:#fee2e2;
+}
+
+.selected-status{
+    outline:3px solid #0f172a;
+}
+
 label{
     display:block;
     margin-bottom:7px;
@@ -90,12 +126,6 @@ input:focus{
     background:linear-gradient(135deg,#334155,#1e293b);
     color:white;
     margin-top:18px;
-    box-shadow:0 8px 18px rgba(15,23,42,0.12);
-}
-
-.main-btn:active,
-.print-btn:active{
-    transform:scale(0.98);
 }
 
 .hidden{
@@ -110,12 +140,6 @@ input:focus{
     text-align:center;
     margin-bottom:22px;
     border:1px solid #e2e8f0;
-    box-shadow:0 4px 14px rgba(15,23,42,0.04);
-}
-
-.top-box h2{
-    margin:0;
-    font-size:24px;
 }
 
 .middle{
@@ -133,7 +157,6 @@ input:focus{
     border-radius:24px;
     overflow:hidden;
     border:1px solid #eef2f7;
-    box-shadow:0 3px 12px rgba(15,23,42,0.03);
 }
 
 .rm-table-card td{
@@ -142,14 +165,8 @@ input:focus{
     padding:16px 10px;
 }
 
-.rm-table-card th{
-    font-size:15px;
-    padding:16px 10px;
-}
-
 .rm-table-card td:last-child{
     font-size:18px;
-    color:#0f172a;
     font-weight:700;
 }
 
@@ -161,16 +178,7 @@ input:focus{
 
 .lm-table-card td:last-child{
     font-size:18px;
-    color:#0f172a;
     font-weight:700;
-}
-
-.rm-table-card{
-    background:#ffffff;
-    border-radius:24px;
-    overflow:hidden;
-    border:1px solid #eef2f7;
-    box-shadow:0 3px 12px rgba(15,23,42,0.03);
 }
 
 .table-title{
@@ -194,17 +202,10 @@ td{
     border-bottom:1px solid #eef2f7;
     text-align:center;
     font-size:14px;
-    line-height:1.5;
 }
 
 th{
     background:#f8fafc;
-    color:#475569;
-    font-weight:700;
-}
-
-tr:last-child td{
-    border-bottom:none;
 }
 
 .summary-wrapper{
@@ -217,43 +218,33 @@ tr:last-child td{
 .summary-table{
     width:100%;
     max-width:420px;
-    table-layout:fixed;
     background:white;
     border-radius:18px;
     overflow:hidden;
-    box-shadow:0 2px 10px rgba(15,23,42,0.04);
 }
 
 .summary-table td:first-child,
 .summary-table th:first-child{
     width:45%;
     font-weight:600;
-    color:#334155;
 }
 
 .summary-table td:last-child,
 .summary-table th:last-child{
     width:55%;
     font-weight:700;
-    color:#0f172a;
 }
 
 .total-row{
     background:linear-gradient(135deg,#dbeafe,#eff6ff);
-    font-weight:800;
-    font-size:18px;
 }
 
 .total-row td{
-    padding:18px 12px;
-    color:#0f172a;
-    border-top:2px solid #93c5fd;
-}
-
-.total-row td:last-child{
-    font-size:22px;
+    padding:16px 10px;
+    font-size:16px;
+    font-weight:800;
     color:#1d4ed8;
-    letter-spacing:0.5px;
+    white-space:nowrap;
 }
 
 .notice{
@@ -273,16 +264,6 @@ tr:last-child td{
         flex-direction:column;
     }
 
-    .title{
-        font-size:26px;
-    }
-
-    th,
-    td{
-        font-size:13px;
-        padding:10px 6px;
-    }
-
 }
 
 @media print{
@@ -295,12 +276,6 @@ tr:last-child td{
     .form-page,
     .print-btn{
         display:none !important;
-    }
-
-    .card{
-        box-shadow:none;
-        border:none;
-        padding:0;
     }
 
 }
@@ -316,36 +291,68 @@ tr:last-child td{
 
     <div class="card form-page">
 
-        <div class="title">טופס לקוח ✨</div>
-        <div class="subtitle">הזן את הפרטים ליצירת דוח מסודר</div>
+        <div class="title">
+           ✨ מחשבון המכובדים ✨
+        </div>
+
+        <div class="subtitle">
+            הזן את הפרטים להפקת דוח מסודר ללקוח
+        </div>
 
         <div class="input-group">
             <label>פרטי הלקוח</label>
-            <input type="text" id="i_1" placeholder="שם / פרטי לקוח">
+            <input type="text" id="i_1">
         </div>
 
         <div class="input-group">
             <label>סכום העברה</label>
-            <input type="number" id="x_1" placeholder="0">
+            <input type="number" id="x_1">
         </div>
 
         <div class="input-group">
             <label>אחוז משיכה</label>
-            <input type="number" id="i_3" placeholder="0">
+            <input type="number" id="i_3">
         </div>
 
         <div class="input-group">
             <label>אחוז עמלה</label>
-            <input type="number" id="i_4" placeholder="0">
+            <input type="number" id="i_4">
         </div>
 
         <div class="input-group">
             <label>אחוז תיווך</label>
-            <input type="number" id="i_5" placeholder="0">
+            <input type="number" id="i_5">
         </div>
 
-        <button class="main-btn" onclick="generateReport()">
+        <div class="input-group">
+
+            <label>יתרה ללקוח</label>
+
+            <div class="balance-row">
+
+                <input type="number" id="i_6">
+
+                <button type="button"
+                        class="status-btn green-btn"
+                        onclick="setBalanceType('green')">
+                    🟢
+                </button>
+
+                <button type="button"
+                        class="status-btn red-btn"
+                        onclick="setBalanceType('red')">
+                    🔴
+                </button>
+
+            </div>
+
+        </div>
+
+        <button class="main-btn"
+                onclick="generateReport()">
+
             צור דוח לקוח →
+
         </button>
 
     </div>
@@ -353,10 +360,13 @@ tr:last-child td{
 
     <!-- REPORT -->
 
-    <div class="card hidden" id="reportPage">
+    <div class="card hidden"
+         id="reportPage">
 
         <div class="top-box">
+
             <h2 id="clientInfo"></h2>
+
         </div>
 
 
@@ -368,7 +378,9 @@ tr:last-child td{
 
             <div class="table-card lm-table-card">
 
-                <div class="table-title">נתוני העברה 💸</div>
+                <div class="table-title">
+                    נתוני העברה 💸
+                </div>
 
                 <table>
 
@@ -391,13 +403,20 @@ tr:last-child td{
 
             <div class="table-card rm-table-card">
 
-                <div class="table-title">עמלות וחישובים 📊</div>
+                <div class="table-title">
+                    עמלות וחישובים 📊
+                </div>
 
                 <table>
 
                     <tr>
-                        <th style="width:65%;">סוג עמלה</th>
-                        <th style="width:35%;">סכום</th>
+                        <th style="width:65%">
+                            סוג עמלה
+                        </th>
+
+                        <th style="width:35%">
+                            סכום
+                        </th>
                     </tr>
 
                     <tr>
@@ -422,50 +441,72 @@ tr:last-child td{
         </div>
 
 
-        <!-- BOTTOM -->
+        <!-- SUMMARY -->
 
         <div class="table-card">
 
-            <div class="table-title">סיכום ללקוח 📦</div>
+            <div class="table-title">
+                סיכום ללקוח 📦
+            </div>
 
             <div class="summary-wrapper">
 
-            <table class="summary-table">
+                <table class="summary-table">
 
-                <tr>
-                    <th>פירוט</th>
-                    <th>סכום</th>
-                </tr>
+                    <tr>
+                        <th>פירוט</th>
+                        <th>סכום</th>
+                    </tr>
 
-                <tr>
-                    <td>סכום ללקוח</td>
-                    <td id="clientTotal"></td>
-                </tr>
+                    <tr>
+                        <td>סכום ללקוח</td>
+                        <td id="clientTotal"></td>
+                    </tr>
 
-                <tr>
-                    <td>סכום למתווך</td>
-                    <td id="brokerTotal"></td>
-                </tr>
+                    <tr>
+                        <td>סכום למתווך</td>
+                        <td id="brokerTotal"></td>
+                    </tr>
 
-                <tr class="total-row">
-                    <td>סכום כולל למסירה ✨</td>
-                    <td id="deliveryTotal"></td>
-                </tr>
+                    <tr class="total-row">
+                        <td style="font-size:15px;">
+                           ✨ סכום כולל למסירה 
+                        </td>
 
-            </table>
+                        <td id="deliveryTotal"></td>
+                    </tr>
+
+                    <tr id="balanceRow"
+                        class="hidden">
+
+                        <td id="balanceLabel"></td>
+
+                        <td id="balanceValue"></td>
+
+                    </tr>
+
+                </table>
 
             </div>
 
         </div>
 
 
+        <!-- NOTICE -->
+
         <div class="notice">
-            אחוז המשיכה מחושב לפי הסכום כולל מע״מ ואחוז העלות והתיווך מחושב לפי הסכום לפני מע״מ
+
+            אחוז המשיכה מחושב לפי הסכום כולל מע״מ
+            ואחוז העלות והתיווך מחושב לפי הסכום לפני מע״מ
+
         </div>
 
 
-        <button class="print-btn" onclick="window.print()">
+        <button class="print-btn"
+                onclick="window.print()">
+
             הדפס דוח 🖨️
+
         </button>
 
     </div>
@@ -483,17 +524,48 @@ function formatNumber(num){
 
 }
 
+let balanceType = '';
+
+function setBalanceType(type){
+
+    balanceType = type;
+
+    document.querySelectorAll('.status-btn')
+        .forEach(btn => {
+            btn.classList.remove('selected-status');
+        });
+
+    if(type === 'green'){
+        document.querySelector('.green-btn')
+            .classList.add('selected-status');
+    }
+
+    if(type === 'red'){
+        document.querySelector('.red-btn')
+            .classList.add('selected-status');
+    }
+
+}
+
 function generateReport(){
 
-    const i_1 = document.getElementById('i_1').value;
+    const i_1 =
+        document.getElementById('i_1').value;
 
-    const x_1 = parseFloat(document.getElementById('x_1').value) || 0;
+    const x_1 =
+        parseFloat(document.getElementById('x_1').value) || 0;
 
-    const i_3 = parseFloat(document.getElementById('i_3').value) || 0;
+    const i_3 =
+        parseFloat(document.getElementById('i_3').value) || 0;
 
-    const i_4 = parseFloat(document.getElementById('i_4').value) || 0;
+    const i_4 =
+        parseFloat(document.getElementById('i_4').value) || 0;
 
-    const i_5 = parseFloat(document.getElementById('i_5').value) || 0;
+    const i_5 =
+        parseFloat(document.getElementById('i_5').value) || 0;
+
+    const i_6 =
+        parseFloat(document.getElementById('i_6').value) || 0;
 
 
     const x_2 = x_1 / 1.18;
@@ -510,7 +582,7 @@ function generateReport(){
 
 
     document.getElementById('clientInfo').innerHTML =
-        'מידע ללקוח - ' + i_1;
+        'דוח מפורט ללקוח - ' + i_1;
 
 
     document.getElementById('transferAmount').innerHTML =
@@ -521,21 +593,19 @@ function generateReport(){
 
 
     document.getElementById('withdrawType').innerHTML =
-        'משיכה <span style="color:#64748b;font-size:12px;">(' + i_3 + '%)</span>';
+        'משיכה (' + i_3 + '%)';
 
     document.getElementById('withdrawAmount').innerHTML =
         formatNumber(x_3);
 
-
     document.getElementById('costType').innerHTML =
-        'עלות <span style="color:#64748b;font-size:12px;">(' + i_4 + '%)</span>';
+        'עלות (' + i_4 + '%)';
 
     document.getElementById('costAmount').innerHTML =
         formatNumber(x_4);
 
-
     document.getElementById('brokerType').innerHTML =
-        'תיווך <span style="color:#64748b;font-size:12px;">(' + i_5 + '%)</span>';
+        'תיווך (' + i_5 + '%)';
 
     document.getElementById('brokerAmount').innerHTML =
         formatNumber(x_5);
@@ -551,7 +621,60 @@ function generateReport(){
         formatNumber(totalDelivery);
 
 
-    document.getElementById('reportPage').classList.remove('hidden');
+    const balanceRow =
+        document.getElementById('balanceRow');
+
+    const balanceLabel =
+        document.getElementById('balanceLabel');
+
+    const balanceValue =
+        document.getElementById('balanceValue');
+
+
+    if(i_6 > 0){
+
+        balanceRow.classList.remove('hidden');
+
+        if(balanceType === 'green'){
+
+            balanceLabel.innerHTML =
+                '🟢 יתרה ללקוח ';
+
+            balanceRow.style.background =
+                '#ecfdf5';
+
+            balanceRow.style.color =
+                '#166534';
+
+        }
+
+        else if(balanceType === 'red'){
+
+            balanceLabel.innerHTML =
+                '🔴 חוב על הלקוח ';
+
+            balanceRow.style.background =
+                '#fef2f2';
+
+            balanceRow.style.color =
+                '#991b1b';
+
+        }
+
+        balanceValue.innerHTML =
+            formatNumber(i_6);
+
+    }
+
+    else{
+
+        balanceRow.classList.add('hidden');
+
+    }
+
+
+    document.getElementById('reportPage')
+        .classList.remove('hidden');
 
 
     window.scrollTo({
@@ -565,4 +688,3 @@ function generateReport(){
 
 </body>
 </html>
-```
