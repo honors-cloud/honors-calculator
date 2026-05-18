@@ -10,8 +10,8 @@
 <style>
 
 @page{
-    margin:0;
-    size:auto;
+    size:A4;
+    margin:6mm;
 }
 
 *{
@@ -277,29 +277,13 @@ th{
     body{
         margin:0 !important;
         padding:0 !important;
-        width:100%;
-        height:auto;
-        overflow:hidden;
+        background:white !important;
     }
 
     body{
-        background:white !important;
-        zoom:0.87;
-    }
-
-    .container{
-        max-width:100%;
-        margin:0;
-        padding:0;
-    }
-
-    .card{
-        box-shadow:none !important;
-        border:none !important;
-        margin:0 !important;
-        padding:0 !important;
-        break-inside:avoid;
-        page-break-inside:avoid;
+        zoom:0.82;
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
     }
 
     .form-page,
@@ -307,13 +291,11 @@ th{
         display:none !important;
     }
 
-    .middle{
-        gap:8px;
-        margin-bottom:10px;
-    }
-
-    table{
-        page-break-inside:avoid;
+    .card{
+        box-shadow:none !important;
+        border:none !important;
+        margin:0 !important;
+        padding:0 !important;
     }
 
 }
@@ -328,11 +310,11 @@ th{
 <div class="card form-page">
 
 <div class="title">
-✨מחשבון המכובדים✨
+טופס לקוח ✨
 </div>
 
 <div class="subtitle">
-הזן את הפרטים להפקת דוח מסודר ללקוח
+הזן את הפרטים ליצירת דוח מסודר
 </div>
 
 <div class="input-group">
@@ -529,9 +511,9 @@ class="hidden">
 
 
 <button class="print-btn"
-onclick="window.print()">
+onclick="savePDF()">
 
-הדפס דוח 🖨️
+שמור PDF 🖨️
 
 </button>
 
@@ -608,7 +590,7 @@ const totalDelivery = s_1 + x_5;
 
 
 document.getElementById('clientInfo').innerHTML =
-'דוח ללקוח - ' + i_1;
+'מידע ללקוח - ' + i_1;
 
 
 document.getElementById('transferAmount').innerHTML =
@@ -707,6 +689,27 @@ window.scrollTo({
 top:document.body.scrollHeight,
 behavior:'smooth'
 });
+
+}
+
+
+function savePDF(){
+
+const report =
+document.getElementById('reportPage');
+
+const originalContents =
+document.body.innerHTML;
+
+document.body.innerHTML =
+report.outerHTML;
+
+window.print();
+
+document.body.innerHTML =
+originalContents;
+
+location.reload();
 
 }
 
