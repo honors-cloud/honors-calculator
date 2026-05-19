@@ -493,7 +493,14 @@ id="reportPage">
 <td>סכום למתווך</td>
 <td id="brokerTotal"></td>
 </tr>
+<tr id="balanceRow"
+class="hidden">
 
+<td id="balanceLabel"></td>
+
+<td id="balanceValue"></td>
+
+</tr>
 <tr class="total-row">
 
 <td style="font-size:15px;">
@@ -504,14 +511,6 @@ id="reportPage">
 
 </tr>
 
-<tr id="balanceRow"
-class="hidden">
-
-<td id="balanceLabel"></td>
-
-<td id="balanceValue"></td>
-
-</tr>
 
 </table>
 
@@ -643,10 +642,6 @@ formatNumber(s_1);
 document.getElementById('brokerTotal').innerHTML =
 formatNumber(x_5);
 
-document.getElementById('deliveryTotal').innerHTML =
-formatNumber(totalDelivery);
-
-
 const balanceRow =
 document.getElementById('balanceRow');
 
@@ -657,46 +652,43 @@ const balanceValue =
 document.getElementById('balanceValue');
 
 
+let finalDelivery = totalDelivery;
+
 if(i_6 > 0){
 
-balanceRow.classList.remove('hidden');
+    balanceRow.classList.remove('hidden');
 
-if(balanceType === 'green'){
+    if(balanceType === 'green'){
 
-balanceLabel.innerHTML =
-'יתרת זכות ללקוח 🟢';
+        document.getElementById('balanceLabel').innerHTML =
+        'יתרה ללקוח 🟢';
 
-balanceRow.style.background =
-'#ecfdf5';
+        finalDelivery = totalDelivery - i_6;
 
-balanceRow.style.color =
-'#166534';
+    }
 
-}
+    else if(balanceType === 'red'){
 
-else if(balanceType === 'red'){
+        document.getElementById('balanceLabel').innerHTML =
+        'חוב על הלקוח 🔴';
 
-balanceLabel.innerHTML =
-'יתרת חובה על הלקוח 🔴';
+        finalDelivery = totalDelivery + i_6;
 
-balanceRow.style.background =
-'#fef2f2';
+    }
 
-balanceRow.style.color =
-'#991b1b';
-
-}
-
-balanceValue.innerHTML =
-formatNumber(i_6);
+    document.getElementById('balanceValue').innerHTML =
+    formatNumber(i_6);
 
 }
 
 else{
 
-balanceRow.classList.add('hidden');
+    balanceRow.classList.add('hidden');
 
 }
+
+document.getElementById('deliveryTotal').innerHTML =
+formatNumber(finalDelivery);
 
 
 document.getElementById('reportPage')
