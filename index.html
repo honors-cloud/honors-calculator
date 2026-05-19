@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 <title>דוח מפורט ללקוח</title>
 
 <style>
-
-@page{
-    margin:0;
-    size:auto;
-}
+@page{ margin:0; size:auto; }
 
 *{
     box-sizing:border-box;
@@ -23,19 +17,13 @@ body{
     margin:0;
     padding:14px;
     background:linear-gradient(180deg,#f8fafc 0%, #f1f5f9 100%);
-    -webkit-text-size-adjust:100%;
     color:#1e293b;
 }
 
-.container{
-    max-width:850px;
-    margin:auto;
-}
+.container{ max-width:850px; margin:auto; }
 
 .card{
     background:rgba(255,255,255,0.92);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
     border-radius:28px;
     padding:20px;
     border:1px solid rgba(255,255,255,0.6);
@@ -57,9 +45,7 @@ body{
     font-size:14px;
 }
 
-.input-group{
-    margin-bottom:16px;
-}
+.input-group{ margin-bottom:16px; }
 
 .balance-row{
     display:flex;
@@ -67,9 +53,7 @@ body{
     align-items:center;
 }
 
-.balance-row input{
-    flex:1;
-}
+.balance-row input{ flex:1; }
 
 .status-btn{
     width:52px;
@@ -79,19 +63,13 @@ body{
     border-radius:14px;
     font-size:24px;
     cursor:pointer;
-    transition:0.2s;
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
-.green-btn{
-    background:#dcfce7;
-}
-
-.red-btn{
-    background:#fee2e2;
-}
+.green-btn{ background:#dcfce7; }
+.red-btn{ background:#fee2e2; }
 
 .selected-status{
     outline:3px solid #0f172a;
@@ -114,9 +92,7 @@ input{
     outline:none;
 }
 
-input:focus{
-    background:#e8eefc;
-}
+input:focus{ background:#e8eefc; }
 
 .main-btn,
 .print-btn{
@@ -127,15 +103,12 @@ input:focus{
     font-size:17px;
     font-weight:700;
     cursor:pointer;
-    transition:0.2s;
     background:linear-gradient(135deg,#334155,#1e293b);
     color:white;
     margin-top:18px;
 }
 
-.hidden{
-    display:none;
-}
+.hidden{ display:none; }
 
 .top-box{
     background:linear-gradient(135deg,#ffffff 0%, #f8fafc 100%);
@@ -153,9 +126,7 @@ input:focus{
     margin-bottom:14px;
 }
 
-.middle > div{
-    flex:1;
-}
+.middle > div{ flex:1; }
 
 .table-card{
     background:#ffffff;
@@ -164,23 +135,14 @@ input:focus{
     border:1px solid #eef2f7;
 }
 
-.rm-table-card td{
-    font-size:15px;
-    font-weight:600;
-    padding:12px 8px;
-}
-
-.rm-table-card td:last-child{
-    font-size:17px;
-    font-weight:700;
-}
-
+.rm-table-card td,
 .lm-table-card td{
     font-size:15px;
     font-weight:600;
     padding:12px 8px;
 }
 
+.rm-table-card td:last-child,
 .lm-table-card td:last-child{
     font-size:17px;
     font-weight:700;
@@ -201,17 +163,14 @@ table{
     border-collapse:collapse;
 }
 
-th,
-td{
+th,td{
     padding:12px 8px;
     border-bottom:1px solid #eef2f7;
     text-align:center;
     font-size:14px;
 }
 
-th{
-    background:#f8fafc;
-}
+th{ background:#f8fafc; }
 
 .summary-wrapper{
     display:flex;
@@ -222,7 +181,7 @@ th{
 
 .summary-table{
     width:100%;
-    max-width:420px;
+    max-width:430px;
     background:white;
     border-radius:18px;
     overflow:hidden;
@@ -230,26 +189,28 @@ th{
 
 .summary-table td:first-child,
 .summary-table th:first-child{
-    width:45%;
+    width:50%;
     font-weight:600;
 }
 
 .summary-table td:last-child,
 .summary-table th:last-child{
-    width:55%;
+    width:50%;
     font-weight:700;
 }
 
 .total-row{
-    background:linear-gradient(135deg,#dbeafe,#eff6ff);
+    background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);
+    box-shadow:0 6px 18px rgba(37,99,235,0.25);
 }
 
 .total-row td{
-    padding:14px 8px;
-    font-size:16px;
+    padding:16px 10px;
+    font-size:17px;
     font-weight:800;
-    color:#1d4ed8;
+    color:white;
     white-space:nowrap;
+    border-bottom:none;
 }
 
 .notice{
@@ -264,28 +225,18 @@ th{
 }
 
 @media(max-width:700px){
-
-    .middle{
-        flex-direction:column;
-    }
-
+    .middle{ flex-direction:column; }
 }
 
 @media print{
-
-    html,
-    body{
+    html,body{
         margin:0 !important;
         padding:0 !important;
-        width:100%;
-        height:auto;
+        background:white !important;
         overflow:hidden;
     }
 
-    body{
-        background:white !important;
-        zoom:0.87;
-    }
+    body{ zoom:0.87; }
 
     .container{
         max-width:100%;
@@ -298,26 +249,13 @@ th{
         border:none !important;
         margin:0 !important;
         padding:0 !important;
-        break-inside:avoid;
-        page-break-inside:avoid;
     }
 
     .form-page,
     .print-btn{
         display:none !important;
     }
-
-    .middle{
-        gap:8px;
-        margin-bottom:10px;
-    }
-
-    table{
-        page-break-inside:avoid;
-    }
-
 }
-
 </style>
 </head>
 
@@ -327,13 +265,8 @@ th{
 
 <div class="card form-page">
 
-<div class="title">
-✨מחשבון המכובדים✨
-</div>
-
-<div class="subtitle">
-הזן את הפרטים להפקת דוח מסודר ללקוח
-</div>
+<div class="title">✨מחשבון המכובדים✨</div>
+<div class="subtitle">הזן את הפרטים להפקת דוח מסודר ללקוח</div>
 
 <div class="input-group">
 <label>פרטי הלקוח</label>
@@ -361,59 +294,33 @@ th{
 </div>
 
 <div class="input-group">
-
-<label>יתרה בזכות/חובה </label>
+<label>יתרה בזכות/חובה</label>
 
 <div class="balance-row">
-
 <input type="number" id="i_6">
 
-<button type="button"
-class="status-btn green-btn"
-onclick="setBalanceType('green')">
-🟢
-</button>
-
-<button type="button"
-class="status-btn red-btn"
-onclick="setBalanceType('red')">
-🔴
-</button>
-
+<button type="button" class="status-btn green-btn" onclick="setBalanceType('green')">🟢</button>
+<button type="button" class="status-btn red-btn" onclick="setBalanceType('red')">🔴</button>
+</div>
 </div>
 
-</div>
-
-<button class="main-btn"
-onclick="generateReport()">
-
-צור דוח לקוח →
-
-</button>
+<button class="main-btn" onclick="generateReport()">צור דוח לקוח →</button>
 
 </div>
 
 
-<div class="card hidden"
-id="reportPage">
+<div class="card hidden" id="reportPage">
 
 <div class="top-box">
-
 <h2 id="clientInfo"></h2>
-
 </div>
-
 
 <div class="middle">
 
 <div class="table-card lm-table-card">
-
-<div class="table-title">
-נתוני העברה 💸
-</div>
+<div class="table-title">נתוני העברה 💸</div>
 
 <table>
-
 <tr>
 <td>סכום ההעברה</td>
 <td id="transferAmount"></td>
@@ -423,28 +330,16 @@ id="reportPage">
 <td>סכום לפני מע״מ</td>
 <td id="beforeVat"></td>
 </tr>
-
 </table>
-
 </div>
-
 
 <div class="table-card rm-table-card">
-
-<div class="table-title">
-עמלות וחישובים 📊
-</div>
+<div class="table-title">עמלות וחישובים 📊</div>
 
 <table>
-
 <tr>
-<th style="width:65%">
-סוג עמלה
-</th>
-
-<th style="width:35%">
-סכום
-</th>
+<th style="width:65%">סוג עמלה</th>
+<th style="width:35%">סכום</th>
 </tr>
 
 <tr>
@@ -461,9 +356,7 @@ id="reportPage">
 <td id="brokerType"></td>
 <td id="brokerAmount"></td>
 </tr>
-
 </table>
-
 </div>
 
 </div>
@@ -471,9 +364,7 @@ id="reportPage">
 
 <div class="table-card">
 
-<div class="table-title">
-סיכום ללקוח 📦
-</div>
+<div class="table-title">סיכום ללקוח 📦</div>
 
 <div class="summary-wrapper">
 
@@ -493,213 +384,164 @@ id="reportPage">
 <td>סכום למתווך</td>
 <td id="brokerTotal"></td>
 </tr>
-<tr id="balanceRow"
-class="hidden">
 
+<tr>
+<td>סכום מקורי למסירה</td>
+<td id="originalDeliveryTotal"></td>
+</tr>
+
+<tr id="balanceRow" class="hidden">
 <td id="balanceLabel"></td>
-
 <td id="balanceValue"></td>
-
 </tr>
+
 <tr class="total-row">
-
-<td style="font-size:15px;">
-סכום כולל למסירה ✨
-</td>
-
+<td style="font-size:15px;">סכום למסירה בפועל ✨</td>
 <td id="deliveryTotal"></td>
-
 </tr>
-
 
 </table>
 
 </div>
-
 </div>
-
 
 <div class="notice">
-
 אחוז המשיכה מחושב לפי הסכום כולל מע״מ
 ואחוז העלות והתיווך מחושב לפי הסכום לפני מע״מ
-
 </div>
 
-
-<button class="print-btn"
-onclick="window.print()">
-
-הדפס דוח 🖨️
-
-</button>
+<button class="print-btn" onclick="window.print()">הדפס דוח 🖨️</button>
 
 </div>
-
 </div>
-
 
 <script>
 
 function formatNumber(num){
-
-return Number(num).toLocaleString('he-IL', {
-maximumFractionDigits:0
-});
-
+    return Number(num).toLocaleString('he-IL', {
+        maximumFractionDigits:0
+    });
 }
 
 let balanceType = '';
 
 function setBalanceType(type){
 
-balanceType = type;
+    balanceType = type;
 
-document.querySelectorAll('.status-btn')
-.forEach(btn => {
-btn.classList.remove('selected-status');
-});
+    document.querySelectorAll('.status-btn').forEach(btn => {
+        btn.classList.remove('selected-status');
+    });
 
-if(type === 'green'){
-document.querySelector('.green-btn')
-.classList.add('selected-status');
-}
+    if(type === 'green'){
+        document.querySelector('.green-btn').classList.add('selected-status');
+    }
 
-if(type === 'red'){
-document.querySelector('.red-btn')
-.classList.add('selected-status');
-}
-
+    if(type === 'red'){
+        document.querySelector('.red-btn').classList.add('selected-status');
+    }
 }
 
 function generateReport(){
 
-const i_1 =
-document.getElementById('i_1').value;
+    const i_1 = document.getElementById('i_1').value;
+    const x_1 = parseFloat(document.getElementById('x_1').value) || 0;
+    const i_3 = parseFloat(document.getElementById('i_3').value) || 0;
+    const i_4 = parseFloat(document.getElementById('i_4').value) || 0;
+    const i_5 = parseFloat(document.getElementById('i_5').value) || 0;
+    const i_6 = parseFloat(document.getElementById('i_6').value) || 0;
 
-const x_1 =
-parseFloat(document.getElementById('x_1').value) || 0;
+    const x_2 = x_1 / 1.18;
+    const x_3 = x_1 * (i_3 / 100);
+    const x_4 = x_2 * (i_4 / 100);
+    const x_5 = x_2 * (i_5 / 100);
 
-const i_3 =
-parseFloat(document.getElementById('i_3').value) || 0;
+    const s_1 = x_1 - x_3 - x_4;
+    const totalDelivery = s_1 + x_5;
 
-const i_4 =
-parseFloat(document.getElementById('i_4').value) || 0;
+    let finalDelivery = totalDelivery;
 
-const i_5 =
-parseFloat(document.getElementById('i_5').value) || 0;
+    document.getElementById('clientInfo').innerHTML =
+        'דוח ללקוח - ' + i_1;
 
-const i_6 =
-parseFloat(document.getElementById('i_6').value) || 0;
+    document.getElementById('transferAmount').innerHTML =
+        formatNumber(x_1);
 
+    document.getElementById('beforeVat').innerHTML =
+        formatNumber(x_2);
 
-const x_2 = x_1 / 1.18;
+    document.getElementById('withdrawType').innerHTML =
+        'משיכה (' + i_3 + '%)';
 
-const x_3 = x_1 * (i_3 / 100);
+    document.getElementById('withdrawAmount').innerHTML =
+        formatNumber(x_3);
 
-const x_4 = x_2 * (i_4 / 100);
+    document.getElementById('costType').innerHTML =
+        'עלות (' + i_4 + '%)';
 
-const x_5 = x_2 * (i_5 / 100);
+    document.getElementById('costAmount').innerHTML =
+        formatNumber(x_4);
 
-const s_1 = x_1 - x_3 - x_4;
+    document.getElementById('brokerType').innerHTML =
+        'תיווך (' + i_5 + '%)';
 
-const totalDelivery = s_1 + x_5;
+    document.getElementById('brokerAmount').innerHTML =
+        formatNumber(x_5);
 
+    document.getElementById('clientTotal').innerHTML =
+        formatNumber(s_1);
 
-document.getElementById('clientInfo').innerHTML =
-'דוח ללקוח - ' + i_1;
+    document.getElementById('brokerTotal').innerHTML =
+        formatNumber(x_5);
 
+    document.getElementById('originalDeliveryTotal').innerHTML =
+        formatNumber(totalDelivery);
 
-document.getElementById('transferAmount').innerHTML =
-formatNumber(x_1);
+    const balanceRow = document.getElementById('balanceRow');
+    const balanceLabel = document.getElementById('balanceLabel');
+    const balanceValue = document.getElementById('balanceValue');
 
-document.getElementById('beforeVat').innerHTML =
-formatNumber(x_2);
+    if(i_6 > 0 && balanceType === 'green'){
 
+        balanceRow.classList.remove('hidden');
 
-document.getElementById('withdrawType').innerHTML =
-'משיכה (' + i_3 + '%)';
+        balanceLabel.innerHTML =
+            '🟢 יתרה ללקוח';
 
-document.getElementById('withdrawAmount').innerHTML =
-formatNumber(x_3);
+        balanceValue.innerHTML =
+           formatNumber(i_6)+ '-';
 
-document.getElementById('costType').innerHTML =
-'עלות (' + i_4 + '%)';
-
-document.getElementById('costAmount').innerHTML =
-formatNumber(x_4);
-
-document.getElementById('brokerType').innerHTML =
-'תיווך (' + i_5 + '%)';
-
-document.getElementById('brokerAmount').innerHTML =
-formatNumber(x_5);
-
-
-document.getElementById('clientTotal').innerHTML =
-formatNumber(s_1);
-
-document.getElementById('brokerTotal').innerHTML =
-formatNumber(x_5);
-
-const balanceRow =
-document.getElementById('balanceRow');
-
-const balanceLabel =
-document.getElementById('balanceLabel');
-
-const balanceValue =
-document.getElementById('balanceValue');
-
-
-let finalDelivery = totalDelivery;
-
-if(i_6 > 0){
-
-    balanceRow.classList.remove('hidden');
-
-    if(balanceType === 'green'){
-
-        document.getElementById('balanceLabel').innerHTML =
-        'יתרה ללקוח 🟢';
-
-        finalDelivery = totalDelivery - i_6;
-
+        finalDelivery =
+            totalDelivery - i_6;
     }
 
-    else if(balanceType === 'red'){
+    else if(i_6 > 0 && balanceType === 'red'){
 
-        document.getElementById('balanceLabel').innerHTML =
-        'חוב על הלקוח 🔴';
+        balanceRow.classList.remove('hidden');
 
-        finalDelivery = totalDelivery + i_6;
+        balanceLabel.innerHTML =
+            '🔴 חוב על הלקוח ';
 
+        balanceValue.innerHTML =
+             formatNumber(i_6)+'+';
+
+        finalDelivery =
+            totalDelivery + i_6;
     }
 
-    document.getElementById('balanceValue').innerHTML =
-    formatNumber(i_6);
+    else{
+        balanceRow.classList.add('hidden');
+    }
 
-}
+    document.getElementById('deliveryTotal').innerHTML =
+        formatNumber(finalDelivery);
 
-else{
+    document.getElementById('reportPage').classList.remove('hidden');
 
-    balanceRow.classList.add('hidden');
-
-}
-
-document.getElementById('deliveryTotal').innerHTML =
-formatNumber(finalDelivery);
-
-
-document.getElementById('reportPage')
-.classList.remove('hidden');
-
-
-window.scrollTo({
-top:document.body.scrollHeight,
-behavior:'smooth'
-});
-
+    window.scrollTo({
+        top:document.body.scrollHeight,
+        behavior:'smooth'
+    });
 }
 
 </script>
