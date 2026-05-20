@@ -198,21 +198,37 @@ th{ background:#f8fafc; }
     width:50%;
     font-weight:700;
 }
-
 .total-row{
-    background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);
-    box-shadow:0 6px 18px rgba(37,99,235,0.25);
+
+    background:#f8fafc;
+
 }
 
 .total-row td{
+
     padding:16px 10px;
-    font-size:17px;
+
+    font-size:18px;
+
     font-weight:800;
-    color:white;
+
+    color:#111827;
+
     white-space:nowrap;
+
+    border-top:2px solid #cbd5e1;
+
     border-bottom:none;
+
 }
 
+.total-row td:last-child{
+
+    font-size:22px;
+
+    font-weight:900;
+
+}
 .notice{
     margin-top:14px;
     background:#fff;
@@ -385,10 +401,7 @@ th{ background:#f8fafc; }
 <td id="brokerTotal"></td>
 </tr>
 
-<tr>
-<td>סכום מקורי למסירה</td>
-<td id="originalDeliveryTotal"></td>
-</tr>
+
 
 <tr id="balanceRow" class="hidden">
 <td id="balanceLabel"></td>
@@ -494,8 +507,7 @@ function generateReport(){
     document.getElementById('brokerTotal').innerHTML =
         formatNumber(x_5);
 
-    document.getElementById('originalDeliveryTotal').innerHTML =
-        formatNumber(totalDelivery);
+   
 
     const balanceRow = document.getElementById('balanceRow');
     const balanceLabel = document.getElementById('balanceLabel');
@@ -509,10 +521,10 @@ function generateReport(){
             '🟢 יתרה ללקוח';
 
         balanceValue.innerHTML =
-           formatNumber(i_6)+ '-';
+           formatNumber(i_6)+ '+';
 
         finalDelivery =
-            totalDelivery - i_6;
+            totalDelivery + i_6;
     }
 
     else if(i_6 > 0 && balanceType === 'red'){
@@ -523,10 +535,10 @@ function generateReport(){
             '🔴 חוב על הלקוח ';
 
         balanceValue.innerHTML =
-             formatNumber(i_6)+'+';
+             formatNumber(i_6)+'-';
 
         finalDelivery =
-            totalDelivery + i_6;
+            totalDelivery - i_6;
     }
 
     else{
